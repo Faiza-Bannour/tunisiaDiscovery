@@ -17,9 +17,12 @@ import CarsPost from "./components/Cars/CarsPost";
 import card from './components/Hotels/Cards';
 import events from './components/events/events';
 import filter from './components/Hotels/filter';
-import Gallery from './components/places/Gallery'
+import Gallery from './components/places/Gallery';
+import CarShow from './components/Cars/CarShow'
 
 import 'vuetify/dist/vuetify.min.css'
+
+import store from './store.js'
 
 Vue.component('navbar', navbar)
 Vue.use(VueRouter)
@@ -80,11 +83,20 @@ const router = new VueRouter({
             path: '/CarsPost',
             component: CarsPost
         },
+        {
+            path: '/CarShow/:idcars',
+            component: CarShow
+        },
+        {
+            path: '/payment',
+            component: ()=>import('./components/Cars/payment.vue')
+        },
     ],
     mode: 'history'
 })
 
 new Vue({
+    store,
     router,
     vuetify,
     render: h => h(App)
