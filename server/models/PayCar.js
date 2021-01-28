@@ -10,10 +10,9 @@ const CarPaySchema = new Schema({
     type: String,
     required: true,
   },
-  userphone: {
-    type: Number,
-    required: true,
-  },
+  title:String,
+  userphone:  Number,
+    
   startD: {
     type: String,
   },

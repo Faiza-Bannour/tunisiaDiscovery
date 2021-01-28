@@ -28,7 +28,7 @@
       <v-btn  color="blue lighten-3" router-link to="/signup">SIGN UP</v-btn>
       </div>
       <div class="navdiv2" v-else-if='this.islogged'>
-      <span class="name_loggedin"><v-icon>{{ icons.mdiAccount }}</v-icon>{{this.islogged}}</span>
+      <span class="name_loggedin"><v-icon>{{ icons.mdiAccount }}</v-icon>{{this.username}}</span>
       <v-btn color="blue lighten-3" class="navbar_space2" router-link to="/payment"><v-icon>mdi-cart</v-icon></v-btn>
       
       <v-btn @click="logout()" class="navbar_space2" color="blue lighten-3" >logout</v-btn>
@@ -45,14 +45,21 @@ import {mdiAccount} from '@mdi/js';
 export default {
   name: "navbar",
   data: () => ({
-    islogged:Cookie.get('name'),
+    islogged:!!Cookie.get('name'),
+    username:Cookie.get('name'),
     icons: {
         mdiAccount}
   }),
+  updated(){
+    if(Cookie.get('name')){
+      this.islogged= true;
+    }
+  },
   methods:{
     logout(){
+      this.islogged = false;
       Cookie.remove('name')
-      window.location.replace('/home')
+      this.$router.push('/home')
     }
   }
 

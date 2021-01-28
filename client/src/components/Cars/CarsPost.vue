@@ -1,7 +1,9 @@
 <template>
 <div class="block latestPostBlock">
+  
   <createCar v-if="apear"/>
   <v-btn
+      v-if="userstatus === 'admin'"
       class="mx-2"
       dark
       large
@@ -27,6 +29,8 @@
             </v-card-text>
             <v-card-actions>
                 <v-btn color="primary" text @click="showcar(car._id)">More</v-btn>
+                
+                <v-btn v-if="userstatus === 'admin'" class="ma-1" color="red" @click="remove(car._id)">Delete</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -38,6 +42,8 @@
 <script>
 import axios from 'axios';
 import createCar from './createCar';
+const Cookie =require('js-cookie');
+
 export default {
   name: "CarsPost",
 
@@ -45,6 +51,8 @@ export default {
     return {
         cars: [],
         apear : false,
+        userstatus:Cookie.get('status'),
+        
   }},
 
   components: {
@@ -54,6 +62,7 @@ export default {
  async mounted() {
     const response = await axios.get("http://localhost:5000/api/Car");
     console.log(response.data)
+    console.log(this.userstatus)
     this.cars = response.data;
   },
   methods: {
@@ -63,7 +72,11 @@ export default {
     },
     apearcarcreate(){
       this.apear = !this.apear;
-    }
+    },
+    async remove(id){
+            await axios.delete(`/api/Car/${id}`);
+            window.location.replace("/CarsPost");
+        }
   }
 };
 </script>

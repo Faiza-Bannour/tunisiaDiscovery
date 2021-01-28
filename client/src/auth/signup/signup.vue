@@ -42,7 +42,7 @@
               error-count="1"
               required
             ></v-text-field>
-            <v-btn class="mr-4" type="submit" :disabled="invalid">Submit</v-btn>
+            <v-btn class="mr-4" type="submit" :!disabled="invalid" @click="submit">Submit</v-btn>
             {{ error}}
           </form>
         </validation-observer>

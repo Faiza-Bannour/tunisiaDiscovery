@@ -1,5 +1,5 @@
 <template>
-<v-container fluid>
+<v-container fluid >
     <v-row>
       <v-col cols="4">
         <v-subheader> image</v-subheader>
@@ -66,18 +66,20 @@
 </template>
 
 <script>
+
 import axios from 'axios'
 export default {
     name:"createCar",
-     data: () => ({
-        image:"",
+     data() {
+    return {
         title:"",
+        image:"",
         text:"",
-        price:""
-    }),
+        price:"",
+    }},
     methods:{
       async createcar(){
-          const newcar = await axios.post('http://localhost:5000/api/Cars/car', {
+          const newcar = await axios.post('http://localhost:5000/api/Car/create', {
               title : this.title,
               imageUrl: this.image,
               text: this.text,

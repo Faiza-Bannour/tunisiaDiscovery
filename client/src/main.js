@@ -89,7 +89,7 @@ const router = new VueRouter({
         },
         {
             path: '/payment',
-            component: ()=>import('./components/Cars/payment.vue')
+            component: ()=>import('./components/payment/payment.vue')
         },
     ],
     mode: 'history'

@@ -5,7 +5,7 @@
       <v-row rows="12" md="4">
           <v-card outlined class="mx-auto">
             <v-img class="black--text align-end" height="300px" width="600px" :src="cars.imageUrl">
-              <v-card-title>{{ cars.title }}</v-card-title>
+              <v-card-title >{{ cars.title }}</v-card-title>
             </v-img>
             <v-card-subtitle class="pb-0"> {{ cars.price }} <span> TND per day </span></v-card-subtitle>
             <v-card-text class="text--primary">
@@ -61,7 +61,7 @@ export default {
        cars:null,
        username:Cookie.get('name'),
        useremail:Cookie.get('email'),
-       userphone:Cookie.get('number'),      
+       userphone:Cookie.get('number'),   
        startD:"",
        endD:"",
        time:null,
@@ -94,9 +94,6 @@ export default {
 },
 
 async paymentSend(){
-  console.log('Cookie.get()username',Cookie.get('name'))
-    console.log('Cookie.get()useremail',Cookie.get('email'))
-      console.log('Cookie.get()userphone',Cookie.get('number'))
   let newPayment = {
         username: this.username,
         useremail: this.useremail,
@@ -105,6 +102,7 @@ async paymentSend(){
         endD: this.endD,
         time: this.time,
         total: this.total,
+        title:this.cars.title
       };
       var car = await axios
         .post("http://localhost:5000/api/CarPay", newPayment)
