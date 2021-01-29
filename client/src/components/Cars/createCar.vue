@@ -52,16 +52,16 @@
       </v-col>
     </v-row>
     <v-btn
+     @click="createcar"
       class="mx-2"
-      @click="createcar"
+      fab
       dark
-      large
-      color="cyan"
-    > Post
+      color="indigo"
+    >
       <v-icon dark>
-        mdi-pencil
+        mdi-plus
       </v-icon>
-    </v-btn> 
+    </v-btn>
   </v-container>
 </template>
 

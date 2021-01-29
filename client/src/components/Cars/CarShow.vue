@@ -5,8 +5,9 @@
       <v-row rows="12" md="4">
           <v-card outlined class="mx-auto">
             <v-img class="black--text align-end" height="300px" width="600px" :src="cars.imageUrl">
-              <v-card-title >{{ cars.title }}</v-card-title>
+              
             </v-img>
+            <v-card-title >{{ cars.title }}</v-card-title>
             <v-card-subtitle class="pb-0"> {{ cars.price }} <span> TND per day </span></v-card-subtitle>
             <v-card-text class="text--primary">
               <div>{{ cars.text }}</div>

@@ -1,7 +1,10 @@
 <template>
 <div class="block latestPostBlock">
   
-  <createCar v-if="apear"/>
+  
+  
+    <v-container>
+<createCar v-if="apear"/>
   <v-btn
       v-if="userstatus === 'admin'"
       class="mx-2"
@@ -14,15 +17,21 @@
         mdi-pencil
       </v-icon>
     </v-btn>
-  
-    <v-container>
-      <h2 class="text-center">Cars Post</h2>
+
       <v-row>
         <v-col v-for="(car) in cars" :key="car._id" cols="12" md="4" >
-          <v-card outlined class="mx-auto">
+          <h2 class="text-center" color="black">Tunis Carthage Airport Agency</h2>
+          <v-hover
+        v-slot="{ hover }"
+        open-delay="200"
+      >
+          <v-card outlined class="mx-auto" :elevation="hover ? 16 : 2"
+          :class="{ 'on-hover': hover }"
+          height="400"
+          max-width="600">
             <v-img class="black--text align-end" height="200px" :src="car.imageUrl">
-              <v-card-title>{{ car.title }}</v-card-title>
             </v-img>
+            <v-card-title>{{ car.title }}</v-card-title>
             <v-card-subtitle class="pb-0">{{ car.price }} <span> TND per day </span></v-card-subtitle>
             <v-card-text class="text--primary">
               <div>{{ car.text }}</div>
@@ -33,9 +42,11 @@
                 <v-btn v-if="userstatus === 'admin'" class="ma-1" color="red" @click="remove(car._id)">Delete</v-btn>
             </v-card-actions>
           </v-card>
+          </v-hover>
         </v-col>
       </v-row>
     </v-container>
+    
   </div>
 </template>
 
@@ -80,3 +91,10 @@ export default {
   }
 };
 </script>
+
+<style lang="sass" scoped>
+.v-card.on-hover.theme--dark
+  background-color: rgba(#FFF, 0.8)
+  >.v-card__text
+    color: #000
+</style>
