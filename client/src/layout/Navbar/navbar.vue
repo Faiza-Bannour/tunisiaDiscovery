@@ -29,8 +29,15 @@
       </div>
       <div class="navdiv2" v-else-if='this.islogged'>
       <span class="name_loggedin"><v-icon>{{ icons.mdiAccount }}</v-icon>{{this.username}}</span>
-      <v-btn color="blue lighten-3" class="navbar_space2" router-link to="/payment"><v-icon>mdi-cart</v-icon></v-btn>
-      
+      <v-btn color="blue lighten-3" class="navbar_space2" router-link to="/payment">
+      <v-badge
+        color="red"
+        :content="getPayments"
+        :value="getPayments"
+      >
+        <v-icon>mdi-cart</v-icon>
+      </v-badge>
+      </v-btn>
       <v-btn @click="logout()" class="navbar_space2" color="blue lighten-3" >logout</v-btn>
       </div>
       
@@ -47,8 +54,7 @@ export default {
   data: () => ({
     islogged:!!Cookie.get('name'),
     username:Cookie.get('name'),
-    icons: {
-        mdiAccount}
+    icons: {mdiAccount},
   }),
   updated(){
     if(Cookie.get('name')){
@@ -60,6 +66,12 @@ export default {
       this.islogged = false;
       Cookie.remove('name')
       this.$router.push('/home')
+    }
+  },
+  computed: {
+    getPayments(){
+      console.log('here', this.$store.state.payments)
+      return this.$store.state.payments
     }
   }
 

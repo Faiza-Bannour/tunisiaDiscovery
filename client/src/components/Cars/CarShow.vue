@@ -41,7 +41,8 @@
             </v-container>
             Total: <input type="text" v-model="total" disabled> DT
             <v-card-actions>
-                <v-btn color="primary" text @click="paymentSend">Reserve</v-btn>
+              
+                <v-btn color="primary" text  @click="paymentSend">Reserve</v-btn>
             </v-card-actions>
           </v-card>
         
@@ -68,6 +69,8 @@ export default {
        time:null,
        total:"",
        items:["08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00"],
+       
+       show: false,
     }   
 },
     async mounted(){
@@ -88,14 +91,15 @@ export default {
         while (endDate > startDate) {
         dayCount++
         startDate.setDate(startDate.getDate() + 1)
-  }
-  this.total=dayCount*this.cars.price
-  console.log(this.total)
-      return dayCount
+      }
+        this.total=dayCount*this.cars.price
+        console.log(this.total)
+        return dayCount
 },
 
 async paymentSend(){
   let newPayment = {
+        title:this.cars.title,
         username: this.username,
         useremail: this.useremail,
         userphone: this.userphone,
@@ -103,15 +107,18 @@ async paymentSend(){
         endD: this.endD,
         time: this.time,
         total: this.total,
-        title:this.cars.title
+        
       };
       var car = await axios
         .post("http://localhost:5000/api/CarPay", newPayment)
         if(!car.data.message) {
-
           this.$store.commit('setCar',car.data)
+          this.$store.commit('incrementPayments')
           this.error = "";
-          this.$router.push("/payment");
+          alert("done");
+          this.$router.push("/CarPost");
+        } else {
+          this.error = "Error try later"
         }
        
 }
