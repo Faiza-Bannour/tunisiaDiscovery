@@ -3,6 +3,7 @@
     <h2 class="text-center">Your Car</h2>
     <v-container v-if="cars">
       <v-row rows="12" md="4">
+        
           <v-card outlined class="mx-auto">
             <v-img class="black--text align-end" height="300px" width="600px" :src="cars.imageUrl">
               
@@ -42,7 +43,7 @@
             Total: <input type="text" v-model="total" disabled> DT
             <v-card-actions>
               
-                <v-btn color="primary" text  @click="paymentSend">Reserve</v-btn>
+                <v-btn color="primary" text @click="paymentSend">Reserve</v-btn>
             </v-card-actions>
           </v-card>
         
@@ -115,8 +116,8 @@ async paymentSend(){
           this.$store.commit('setCar',car.data)
           this.$store.commit('incrementPayments')
           this.error = "";
-          alert("done");
-          this.$router.push("/CarPost");
+          alert("added to payment");
+          this.$router.push("/home")
         } else {
           this.error = "Error try later"
         }

@@ -1,6 +1,12 @@
 <template>
-  <v-footer class="footer" padless>
-    <v-card flat tile width="100%" class="black lighten-1 text-center">
+  <v-footer class="footer " padless >
+    <v-card flat tile width="100%" class="black  text-center">
+      <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/about">
+     About
+    </v-btn>
+     <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/contact">
+     Contact
+    </v-btn>
       <div class="footer-content">
         <div class="about">
           <h1 class="Z">See Tunisia through our eyes</h1>
@@ -11,14 +17,18 @@
             Our main restaurant, which has a beautiful terrace overlooking the pool and garden, offers a buffet of diverse local and international cuisine, meeting everyone’s expectations.
           </p>
         </div>
+        <div id="wrapper" class="footer-content">
         <!-- <v-divider></v-divider> -->
-        <div class="contact">
+        <div id="left" class="about">
           <span class="X">
             <v-icon class="a" large color="white darken-2">mdi-phone</v-icon>&nbsp; Phone: (216) 22 22 22 22
           </span>
+                  </div>
+        <div id="right" class="contact">
           <span class="X">
             <v-icon large color="white darken-2">mdi-mail</v-icon>&nbsp;Mail: contact@tunisia.com
           </span>
+                  </div>
         </div>
       </div>
       <v-card-text class="white--text">
@@ -36,25 +46,31 @@ export default {
       "mdi-phone",
       "mdi-email",
     ],
-
-    // padless: true,
-    // variant: true,
-    // absolute: true,
-    // fixed: true,
   }),
 };
 </script>
 <style scoped>
 .X {
-  font-size: 28px;
-  color: rgb(190, 198, 212);
+  font-size: 25px;
+  color: rgba(22, 184, 199, 0.7);
 }
 .W {
-  font-size: 21px;
-  color: rgb(104, 154, 212);
+  font-size: 17px;
+  color:rgba(22, 184, 199, 0.7);
 }
 .Z {
   font-size: 30px;
-  color: rgb(135, 162, 212);
+  color:rgba(22, 184, 199, 0.7);
 }
+.v-sheet.v-footer {
+color: black !important;
+}
+#left {
+  flex: 1 1 45%;
+  color: white
+}
+#right {
+  flex: 1 1 45%;
+  /* top: 100px; */
+  }
 </style>

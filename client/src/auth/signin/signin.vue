@@ -1,7 +1,7 @@
 <template>
    <v-app>
     <v-content>
-      <v-card width="800" height="320" class="mx-auto mt-9">
+      <v-card id="card" width="800" height="320" class="mx-auto mt-9">
         <v-card-title>Login Form</v-card-title>
    <form>
     <v-text-field
@@ -12,14 +12,17 @@
     <v-text-field
         label="Password"
         v-model="password"
-        type="password"
+        :type="showPassword ? 'text' : 'password'"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
+              error-count="1"
         required
 ></v-text-field>
     <v-btn
       class="mr-4"
       @click="signin()"
     >
-     submit
+     Submit
     </v-btn>
     {{ error }}
   </form>
@@ -37,6 +40,7 @@
       email: '',
       password: '',
       error: '',
+      showPassword: false,
     }},
     methods:{
      async signin() {

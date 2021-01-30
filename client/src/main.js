@@ -4,7 +4,7 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router';
 // layout
 import navbar from "./layout/Navbar/navbar";
-import f from "./layout/Footer/f";
+
 // auth
 import signin from './auth/signin/signin';
 import signup from './auth/signup/signup';
@@ -15,11 +15,14 @@ import contact from './components/views/contact';
 import datepicker from "./components/Hotels/main";
 import CarsPost from "./components/Cars/CarsPost";
 import card from './components/Hotels/Cards';
+import reservation from './components/Hotels/reservation';
 import events from './components/events/events';
 import filter from './components/Hotels/filter';
 import Gallery from './components/places/Gallery';
+import showplaces from'./components/places/showplaces'
+import GoogleMap from './components/places/map';
 import CarShow from './components/Cars/CarShow'
-
+import eventsShow from "./components/events/eventsShow";
 import 'vuetify/dist/vuetify.min.css'
 
 import store from './store.js'
@@ -47,10 +50,7 @@ const router = new VueRouter({
             path: '/navbar',
             component: navbar
         },
-        {
-            path: '/f',
-            component: f
-        },
+        
         {
             path: '/signup',
             component: signup
@@ -72,8 +72,20 @@ const router = new VueRouter({
             component: card
         },
         {
+            path: '/reservation/:id',
+            component: reservation
+        },
+        {
             path: '/gallery',
             component: Gallery
+        },
+        {
+            path:'/showplaces/:idplace',
+            component:showplaces
+        },
+        {
+            path:'/map',
+            component:GoogleMap
         },
         {
             path: '/filter',
@@ -86,6 +98,10 @@ const router = new VueRouter({
         {
             path: '/CarShow/:idcars',
             component: CarShow
+        },
+        {
+            path: '/eventsShow/:idevents',
+            component: eventsShow
         },
         {
             path: '/payment',
